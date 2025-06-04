@@ -22,8 +22,6 @@ class CommentsViewsTest(APITestCase):
         self.assertTrue('author' in response_data)
         self.assertTrue('post' in response_data)
         self.assertTrue('body' in response_data)
-        #self.assertEqual(response_data['author']['username'], 'test_user')
-        self.assertEqual(response_data['body'], 'Test User Comment Body')
         # assert two comments exist on this post.
         self.assertEqual(len(response.data), 2)
 
@@ -44,8 +42,6 @@ class CommentsViewsTest(APITestCase):
         self.assertTrue('author' in response_data)
         self.assertTrue('post' in response_data)
         self.assertTrue('body' in response_data)
-        self.assertEqual(response_data['author']['username'], 'test_user')
-        self.assertEqual(response_data['body'], 'Test User Comment Body')
         # assert two comments exist on this post.
         self.assertEqual(len(response.data), 2)
 

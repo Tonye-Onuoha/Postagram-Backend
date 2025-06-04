@@ -9,6 +9,7 @@ jobs:
     name: Build & Test
     runs-on: windows-latest
     env:
+      TZ: "Africa/Lagos"
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
       DEBUG: ${{ secrets.DEBUG }}
