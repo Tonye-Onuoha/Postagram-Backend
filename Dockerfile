@@ -16,7 +16,7 @@ COPY requirements.txt ./
 
 # Install all the dependencies
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt # The -r flag tells pip to read and install the packages in the file.
 
 # Copy project files to working directory
 COPY . ./
