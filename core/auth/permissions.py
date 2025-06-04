@@ -2,6 +2,7 @@ from rest_framework.permissions import BasePermission, SAFE_METHODS
 from rest_framework.exceptions import PermissionDenied
 from core.users.models import User
 
+
 class UserPermission(BasePermission):
     def has_permission(self, request, view):
         """This method gets called automatically when this permission is used in a function-based view"""
@@ -9,7 +10,11 @@ class UserPermission(BasePermission):
             if request.user.is_anonymous:
                 return request.method in SAFE_METHODS
             return bool(request.user and request.user.is_authenticated)
-        elif request.method == "PUT" or request.method == "PATCH" or request.method == "DELETE":
+        elif (
+            request.method == "PUT"
+            or request.method == "PATCH"
+            or request.method == "DELETE"
+        ):
             return bool(request.user and request.user.is_authenticated)
 
     def has_object_permission(self, request, obj):
