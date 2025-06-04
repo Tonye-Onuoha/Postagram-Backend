@@ -8,6 +8,10 @@ jobs:
   first-job:
     name: Build & Test
     runs-on: windows-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
+      DEBUG: ${{ secrets.DEBUG }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
