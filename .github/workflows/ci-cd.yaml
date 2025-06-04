@@ -2,7 +2,7 @@ name: Django application workflow
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   first-job:
