@@ -13,11 +13,11 @@ jobs:
       DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
       DEBUG: ${{ secrets.DEBUG }}
       CORS_ALLOW_ORIGINS: ${{ secrets.CORS_ALLOW_ORIGINS }}
-      DATABASE_HOST: ${{ sectets.DATABASE_HOST }}
-      DATABASE_NAME: ${{ sectets.DATABASE_NAME }}
-      DATABASE_USER: ${{ sectets.DATABASE_USER }}
-      DATABASE_PASSWORD: ${{ sectets.DATABASE_PASSWORD }}
-      DATABASE_PORT: ${{ sectets.DATABASE_PORT }}
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+      DATABASE_USER: ${{ secrets.DATABASE_USER }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
