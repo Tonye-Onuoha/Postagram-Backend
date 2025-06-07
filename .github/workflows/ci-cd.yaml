@@ -12,6 +12,7 @@ jobs:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
       DEBUG: ${{ secrets.DEBUG }}
+      CORS_ALLOW_ORIGINS: ${{ secrets.CORS_ALLOW_ORIGINS }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
