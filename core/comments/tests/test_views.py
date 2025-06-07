@@ -98,7 +98,7 @@ class CommentsViewsTest(APITestCase):
             "author": self.user1.public_id,
             "body": "Anonymous Comment Body",
             }
-        response = self.client.put(url)
+        response = self.client.put(url, data=comment_data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_authenticated_user_lacks_object_permissions_for_comment_updates(self):
@@ -116,7 +116,7 @@ class CommentsViewsTest(APITestCase):
             "author": self.user1.public_id,
             "body": "Authenticated Comment Body",
             }
-        response = self.client.put(url)
+        response = self.client.put(url, data=comment_data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_authenticated_user_can_update_comments(self):

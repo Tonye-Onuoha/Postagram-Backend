@@ -24,7 +24,7 @@ def get_or_create_comments(request, post_pk):
             try:
                 post = Post.objects.get_object_by_public_id(post_pk)
             except Post.DoesNotExist:
-                raise ValidationError(f'There is no user with public id "{post_pk}"')
+                raise ValidationError(f'There is no post with public id "{post_pk}"')
             else:
                 post_comments = Comment.objects.filter(post__public_id=post.public_id).order_by('-updated')
                 serializer = CommentSerializer(post_comments, many=True, context={'request':request})

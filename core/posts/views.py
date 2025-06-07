@@ -31,7 +31,7 @@ def get_or_create_posts(request):
             return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == "POST":
         serializer = PostSerializer(data=request.data, context={'request':request})
-        # return response if serializer is valid, else raise an exception
+        # return response if serializer is valid, else raise an exception.
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

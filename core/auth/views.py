@@ -4,8 +4,10 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework import status
 from core.users.models import User
+from core.users.serializers import UserSerializer
 from core.auth.serializers.register import RegisterSerializer
 from core.auth.serializers.login import LoginSerializer
+
 
 # Create your views here.
 @api_view(["POST"])
@@ -15,9 +17,10 @@ def register(request):
         serializer = RegisterSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+        user_serializer = UserSerializer(user, context={'request':request})
         refresh = RefreshToken.for_user(user)
         res = {"access": str(refresh.access_token), "refresh": str(refresh)}
-        return Response({"user": serializer.data, "access": res["access"], "refresh": res["refresh"]}, status=status.HTTP_201_CREATED)
+        return Response({"user": user_serializer.data, "access": res["access"], "refresh": res["refresh"]}, status=status.HTTP_201_CREATED)
 
 @api_view(["POST"])
 @permission_classes([AllowAny])

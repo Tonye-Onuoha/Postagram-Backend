@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# Keys prefixed with "django-insecure" are vulnerable to attack, please generate a new key if necessary.
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Keys prefixed with "django-insecure" are vulnerable to attack, please generate a new key if necessary.
 DEBUG = os.getenv("DEBUG", None) or "DEBUG" != "DEBUG"
 
 # The allowed hosts determine the hosts that can be specified in the request URIS/URLS.
@@ -155,7 +155,7 @@ AUTH_USER_MODEL = "core_users.User"
 
 # CORS
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOW_ORIGINS").split(" ")
 
 # REST FRAMEWORK
 
