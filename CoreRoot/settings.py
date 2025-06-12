@@ -184,6 +184,9 @@ AWS_S3_FILE_OVERWRITE = False
 STORAGES = {
     # Media files (uploaded images) management
     "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
     },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    }
 }
