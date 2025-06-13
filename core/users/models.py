@@ -70,7 +70,7 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(db_index=True, unique=True)
-    avatar = models.ImageField(null=True, blank=True)
+    avatar = models.ImageField(null=True, blank=True,upload_to=user_directory_path)
     bio = models.TextField(blank=True)
     posts_liked = models.ManyToManyField("core_posts.Post", related_name="liked_by")
     comments_liked = models.ManyToManyField(

@@ -142,7 +142,7 @@ STATIC_URL = "static/"
 
 MEDIA_URL = "/media/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads") # base directory for all user-uploaded content, such as images, videos, and documents
 
 DEFAULT_AVATAR_URL = "https://api.dicebear.com/9.x/identicon/svg"
 
