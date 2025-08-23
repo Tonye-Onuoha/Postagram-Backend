@@ -52,6 +52,7 @@ class CommentSerializer(AbstractSerializer):
         # The to_representation() method takes the object instance that requires serialization and returns a primitive representation.
         # This usually means returning a structure of built-in Python data types.
         # We update the representation of the serialized comment to represent the author field as a serialized user rather than a public id.
+        print("The comment serializer context is: ", self.context)
         representation = super().to_representation(instance)
         author = User.objects.get_object_by_public_id(representation["author"])
         representation["author"] = UserSerializer(author, context=self.context).data

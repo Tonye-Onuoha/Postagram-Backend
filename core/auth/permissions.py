@@ -33,3 +33,5 @@ class UserPermission(BasePermission):
     # If the user is authenticated (i.e not anonymous) but the permission returns False, then you get a 403 (Forbidden) status code.
     # If the user is anonymous but the permission returns False, then it falls back to a 401 (Unauthorized) status code.
     # Use view.http_method_names to see the request methods that the view accepts.
+    # SAFE_METHODS (typically GET AND HEAD) are methods that ensure that no action will occur on the server as a result of the HTTP request.
+    # By action, we mean that the server will perform an operation on behalf of the client e.g credit card being charged for a purchase.

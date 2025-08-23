@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "core.comments",
     "rest_framework",
     "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     "storages",
 ]
@@ -91,13 +92,17 @@ WSGI_APPLICATION = "CoreRoot.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
+    "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}
+}
+
+# CACHE
+CACHES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DATABASE_NAME"),
-        "USER": os.getenv("DATABASE_USER"),
-        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-        "HOST": os.environ.get("DATABASE_HOST"),
-        "PORT": os.getenv("DATABASE_PORT")
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1", # /1 indicates database 1
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
     }
 }
 
@@ -142,7 +147,9 @@ STATIC_URL = "static/"
 
 MEDIA_URL = "/media/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "uploads") # base directory for all user-uploaded content, such as images, videos, and documents
+MEDIA_ROOT = os.path.join(
+    BASE_DIR, "uploads"
+)  # base directory for all user-uploaded content, such as images, videos, and documents
 
 DEFAULT_AVATAR_URL = "https://api.dicebear.com/9.x/identicon/svg"
 
@@ -182,6 +189,7 @@ AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
 AWS_S3_FILE_OVERWRITE = False
 
+"""
 STORAGES = {
     # Media files (uploaded images) management
     "default": {
@@ -191,5 +199,4 @@ STORAGES = {
         "BACKEND": "storages.backends.s3.S3Storage",
     }
 }
-
-
+"""
