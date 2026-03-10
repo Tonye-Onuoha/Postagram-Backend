@@ -6,6 +6,8 @@ from core.users.models import User
 from core.users.serializers import UserSerializer
 
 class PostSerializer(AbstractSerializer):
+    # SlugRelatedField may be used to represent the target of the relationship using a field on the target.
+    # i.e here we represent the author of a post using its public id.
     author = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field='public_id')
     # The Serializer class in Django provides ways to create the write_only values that will be sent on the response.
     liked = serializers.SerializerMethodField()
