@@ -33,6 +33,7 @@ def get_or_create_posts(request):
                 post_objects = Post.objects.all().order_by('-updated')
                 # save posts to cache.
                 cache.set("post_objects", post_objects)"""
+            post_objects = Post.objects.all().order_by('-updated')
             serializer = PostSerializer(post_objects, many=True, context={'request':request})
             return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == "POST":

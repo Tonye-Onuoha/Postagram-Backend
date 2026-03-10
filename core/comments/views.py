@@ -34,6 +34,7 @@ def get_or_create_comments(request, post_pk):
                     comment_objects = Comment.objects.filter(post__public_id=post.public_id).order_by('-updated')
                     # save comments to cache.
                     cache.set("comment_objects", comment_objects)"""
+                comment_objects = Comment.objects.filter(post__public_id=post.public_id).order_by('-updated')
                 serializer = CommentSerializer(comment_objects, many=True, context={'request':request})
                 return Response(serializer.data, status=status.HTTP_200_OK)
 
