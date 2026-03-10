@@ -9,7 +9,7 @@ from core.posts.models import Post
 from core.users.models import User
 from core.comments.serializers import CommentSerializer
 from core.auth.permissions import UserPermission
-from django.core.cache import cache
+#from django.core.cache import cache
 
 # Create your views here.
 @api_view(["GET", "POST"])
@@ -27,13 +27,13 @@ def get_or_create_comments(request, post_pk):
             except Post.DoesNotExist:
                 raise ValidationError(f'There is no post with public id "{post_pk}"')
             else:
-                # check if cache contains comments.
+                """check if cache contains comments.
                 comment_objects = cache.get("comment_objects")
                 if comment_objects is None:
                     # get all comments of a particular post.
                     comment_objects = Comment.objects.filter(post__public_id=post.public_id).order_by('-updated')
                     # save comments to cache.
-                    cache.set("comment_objects", comment_objects)
+                    cache.set("comment_objects", comment_objects)"""
                 serializer = CommentSerializer(comment_objects, many=True, context={'request':request})
                 return Response(serializer.data, status=status.HTTP_200_OK)
 

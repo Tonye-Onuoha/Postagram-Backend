@@ -8,7 +8,7 @@ from core.auth.permissions import UserPermission
 from .models import Post
 from .serializers import PostSerializer
 from core.users.models import User
-from django.core.cache import cache
+#from django.core.cache import cache
 
 # Create your views here.
 @api_view(["GET", "POST"])
@@ -26,13 +26,13 @@ def get_or_create_posts(request):
             serializer = PostSerializer(author_posts, many=True, context={'request':request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
-            # check if cache contains posts.
+            """check if cache contains posts.
             post_objects = cache.get("post_objects")
             if post_objects is None:
                 # get posts by all users.
                 post_objects = Post.objects.all().order_by('-updated')
                 # save posts to cache.
-                cache.set("post_objects", post_objects)
+                cache.set("post_objects", post_objects)"""
             serializer = PostSerializer(post_objects, many=True, context={'request':request})
             return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == "POST":
